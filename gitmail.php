@@ -5,6 +5,9 @@
 require "Git.php";
 require "class.phpmailer-lite.php";
 
+// Bright red strings don't look good in the diffs; this is a little nicer:
+ini_set('highlight.string', '#F7A000');
+
 if ($argc != 3)
     die("Syntax: gitmail.php <path-to-git> <path-to-repo>\n");
 
