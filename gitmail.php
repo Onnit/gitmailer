@@ -183,7 +183,7 @@ foreach ($recipients as $el)
 }
 $prefix = $git->getConfigValue('hooks.emailprefix');
 
-$mail->Subject = $prefix . ' ' . substr($commit->title, 0, 100);
+$mail->Subject = sprintf("%s [%s] %s", $prefix, current(explode(' ', $commit->author)), substr($commit->title, 0, 100));
 $mail->AltBody = $prefix . ' ' . $commit->title; 
 $mail->MsgHTML($output);
 
