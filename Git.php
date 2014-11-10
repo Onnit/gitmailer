@@ -125,7 +125,15 @@ class Git
      */
     public function inBranches($commit, $path)
     {
-        return $this->_inObject($commit, 'branch');
+        $cmd = sprintf($this->git_path.' --git-dir=%s branch --contains %s', escapeshellarg($this->repo), escapeshellarg($commit));
+	exec($cmd, $out, $ret);
+	$branches = array();
+	if ( $ret === 0 ) {
+		foreach($out as $line) {
+			$branches[] = trim($line);
+		}
+	}
+ 	return $branches;	
     }
 
     /**
